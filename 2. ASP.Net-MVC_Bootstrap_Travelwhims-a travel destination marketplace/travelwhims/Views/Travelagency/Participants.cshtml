@@ -1,0 +1,59 @@
+﻿@model List<travelwhims.Models.TWdatabase.CustomerPackage>
+
+@{
+    ViewBag.Title = "Participants";
+    Layout = "~/Views/Shared/_AgencyLayout.cshtml";
+}
+
+@{ var a = 0; }
+
+<center>
+    <h2 style="font-family:'Times New Roman'; border:2px solid mediumseagreen; width:300px; padding:5px; margin:20px;">Participants</h2>
+
+    @foreach (var pac in Model)
+    {
+
+        if (++a > 1) { break; }
+        <h2 style="color:Highlight">@pac.Package.pac_title</h2>
+        <h4>@pac.Package.pac_destinations</h4>
+        <b>@pac.Package.pac_tourdate.ToLongDateString()</b> 
+        <b>to</b>
+        <b> @pac.Package.pac_returndate.ToLongDateString() </b>
+        <br>
+    }
+    <br />
+    <div>
+        <table class="table table-hover" style=" width:1000px;">
+            @foreach (var pac in Model)
+            {
+                <tr>
+                    <td width="350">
+                        @if (pac.Customer.c_dp == null)
+                        {
+                            <img src="~/images/public/nodpimage.png" alt="c_dp" style="object-fit:cover;" width="125" height="125">
+                        }
+                        else
+                        {
+                            <img src="~/images/customers/@pac.Customer.c_dp" alt="c_dp" style="object-fit:cover;" width="125" height="125">
+                        }
+
+                    </td>
+                    <td>
+                        <h4 style="color:darkcyan" ><b>@pac.Customer.c_name</b></h4>
+                        <b>Username: @pac.Customer.c_username</b><br>
+                        <b>Phone: @pac.Customer.c_phone</b><br>
+                        <b>Email : @pac.Customer.c_mail</b><br>
+                        <b>Address : @pac.Customer.c_address</b><br>
+                    </td>
+
+
+
+                </tr>
+            }
+
+
+        </table>
+
+
+    </div>
+</center>

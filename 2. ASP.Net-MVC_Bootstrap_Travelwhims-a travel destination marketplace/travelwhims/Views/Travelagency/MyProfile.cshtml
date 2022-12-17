@@ -1,0 +1,52 @@
+﻿@model travelwhims.Models.TWdatabase.TravelAgency
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_AgencyLayout.cshtml";
+}
+
+
+
+<div>
+    <center>
+        <h2 style="font-family:'Times New Roman'; border:2px solid mediumseagreen; width:300px; padding:5px; margin:20px;">My Profile</h2>
+        <table>
+            <tr>
+                <td>
+                    @if (Model.ta_dp == null)
+                    {
+                        <img src="~/images/public/noimage.png" alt="pac_thumbnail" style="object-fit:cover; padding:10px;" width="300" height="300">
+                    }
+                    else
+                    {
+                        <img src="~/images/travelagencies/@Model.ta_dp" alt="pac_thumbnail" style="object-fit:cover; padding:10px;" width="300" height="300">
+                    }
+                </td>
+                <td>
+                    <div style="text-align:left; width:600px; margin:30px;">
+                        <h4 style="color:Highlight;">Name : @Model.ta_name</h4>
+                        <h5>Username : @Model.ta_username</h5>
+                        <h5>Rating: @Model.ta_rating out of 5</h5>
+                        <h5>Bio : @Model.ta_bio</h5>
+                        <h5>Mail : @Model.ta_mail</h5>
+                        <h5>Phone: @Model.ta_phone</h5>
+                        <h5>Address : @Model.ta_officeaddress</h5>
+                        <br />
+
+                    </div>
+                </td>
+
+
+            </tr>
+        </table>
+       
+
+    
+
+        
+
+        <a class="btn btn-success" href="/Travelagency/EditProfile">Edit Profile  </a> <a class="btn btn-outline-success" href="/Travelagency/ChangePassword">Change Password</a>
+
+
+    </center>
+</div>

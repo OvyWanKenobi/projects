@@ -1,0 +1,181 @@
+﻿@model travelwhims.Models.TWdatabase.Package
+@{
+    ViewBag.Title = "Ediit Packages";
+    Layout = "~/Views/Shared/_AgencyLayout.cshtml";
+}
+
+
+
+
+<center>
+    <div style="width:500px; margin-top:50px;">
+        <h2 style="color:forestgreen; margin-bottom: 40px;">Edit Package</h2>
+
+
+        @*@if (TempData["msg"] != null)
+        {
+            <span class="label-danger">@TempData["msg"]</span>
+        }*@
+
+    <form class="form-floating" action="/Travelagency/EditPackage" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" value="@Model.id" name="id">
+        <input type="hidden" value="@Model.pac_ta_fk" name="pac_ta_fk">
+        <input type="hidden" value="@Model.pac_status" name="id">
+
+        <div class="form-floating">
+
+            <input class="form-control" id="pac_title" type="text" value="@Model.pac_title" name="pac_title" placeholder="Title">
+            <label style="margin-left:20px;" for="pac_title">Title</label>
+            @Html.ValidationMessageFor(model => model.pac_title, "", new { @class = "text-danger" })<br />
+
+        </div>
+
+        <div class="form-floating">
+
+            <input class="form-control" id="pac_destinations" type="text" value="@Model.pac_destinations" name="pac_destinations" placeholder="Destinations">
+            <label style="margin-left:20px;" for="pac_destinations">Destinations</label>
+            @Html.ValidationMessageFor(model => model.pac_destinations, "", new { @class = "text-danger" })<br />
+        </div>
+
+        <div class="form-floating">
+
+            <table>
+                <tr>
+                    <th style="padding-right:20px;">Category:  </th>
+                    @if (Model.pac_category == "local")
+                    {
+                        <td>
+
+                            <input class="form-check-input" id="pac_local" type="radio" name="pac_category" value="local" checked>
+                            <label class="form-check-label" for="pac_local">Local</label>
+
+                        </td>
+                        <td>
+                            <input class="form-check-input" id="pac_foreign" type="radio" name="pac_category" value="foreign">
+                            <label class="form-check-label" for="pac_foreign">Foreign</label>
+                        </td>
+
+
+                    }
+                    else
+                    {
+                        <td>
+
+                            <input class="form-check-input" id="pac_local" type="radio" name="pac_category" value="local">
+                            <label class="form-check-label" for="pac_local">Local</label>
+
+                        </td>
+                        <td>
+                            <input class="form-check-input" id="pac_foreign" type="radio" name="pac_category" value="foreign" checked>
+                            <label class="form-check-label" for="pac_foreign">Foreign</label>
+                        </td>
+
+                    }
+
+
+                </tr>
+
+                <tr>
+                    <th style="padding-right:20px;">Class:  </th>
+
+                    @if (Model.pac_class == "economy")
+                    {
+                        <td>
+                            <input class="form-check-input" id="pac_econo" type="radio" name="pac_class" value="economy" checked>
+                            <label class="form-check-label" for="pac_econo">Economy</label>
+                        </td>
+
+                        <td>
+                            <input class="form-check-input" id="pac_foreign" type="radio" name="pac_class" value="firstclass">
+                            <label class="form-check-label" for="pac_foreign">First Class</label>
+                        </td>
+
+                    }
+                    else
+                    {
+                        <td>
+                            <input class="form-check-input" id="pac_econo" type="radio" name="pac_class" value="economy">
+                            <label class="form-check-label" for="pac_econo">Economy</label>
+                        </td>
+
+                        <td>
+                            <input class="form-check-input" id="pac_foreign" type="radio" name="pac_class" value="firstclass" checked>
+                            <label class="form-check-label" for="pac_foreign">First Class</label>
+                        </td>
+                    }
+                </tr>
+
+
+            </table>
+        </div>
+
+        <br />
+
+
+
+        <div class="form-floating" style="float:unset;">
+
+            <input class="form-control" id="pac_price" type="text" value="@Model.pac_price" name="pac_price" placeholder="Price">
+            <label for="pac_price">Price</label>
+            @Html.ValidationMessageFor(model => model.pac_price, "", new { @class = "text-danger" })
+            <br />
+        </div>
+        <br />
+        <div class="form-floating">
+            <input class="form-control" id="pac_tourdate" type="date" value="@Model.pac_tourdate.ToString("yyyy-MM-dd")" name="pac_tourdate" placeholder="TourDate">
+            <label style="margin-left:20px;" for="pac_tourdate">TourDate</label>
+            @Html.ValidationMessageFor(model => model.pac_tourdate, "", new { @class = "text-danger" })
+            <br />
+        </div>
+        <br />
+        <div class="form-floating">
+            <input class="form-control" id="pac_returndate" type="date" value="@Model.pac_returndate.ToString("yyyy-MM-dd")" name="pac_returndate" placeholder="ReturnDate">
+            <label style="margin-left:20px;" for="pac_returndate">ReturnDate</label>
+            @Html.ValidationMessageFor(model => model.pac_returndate, "", new { @class = "text-danger" })
+            <br />
+        </div>
+
+        <br />
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Details" name="pac_bio" id="pac_bio" style="height: 100px">@Model.pac_bio</textarea>
+            <label style="margin-left:20px;" for="pac_bio">Details</label>
+            @Html.ValidationMessageFor(model => model.pac_bio, "", new { @class = "text-danger" })
+            <br />
+        </div>
+        <br />
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Pre-requisites" name="pac_prerequisite" id="pac_prerequisite" style="height: 100px">@Model.pac_prerequisite</textarea>
+            <label style="margin-left:20px;" for="pac_prerequisite">Pre- requisite</label>
+            @Html.ValidationMessageFor(model => model.pac_prerequisite, "", new { @class = "text-danger" })
+            <br />
+        </div>
+
+        <br />
+
+        <div>
+            <fieldset class="input-group">
+
+                <label class="input-group-text" for="profilepicture">Add a thumbnail: </label>
+                <input class="form-control" value="@Model.pac_thumbnail" type="file" name="profilepicture" id="profilepicture" />
+                @Html.ValidationMessageFor(model => model.pac_thumbnail, "", new { @class = "text-danger" })
+                <br />
+            </fieldset>
+        </div>
+        <br />
+
+        <div class="form-floating">
+            <input class="form-control" id="pac_maxmember" type="text" name="pac_maxmember" value="@Model.pac_maxmember" placeholder="Max Participants">
+            <label style="margin-left:20px;" for="pac_maxmember">Max Participants</label>
+            @Html.ValidationMessageFor(model => model.pac_maxmember, "", new { @class = "text-danger" })<br />
+        </div>
+
+        <br />
+
+        <input class="btn btn-success" type="submit" value="Update ">
+    </form>
+    </div>
+</center>
+
+
+

@@ -1,0 +1,72 @@
+﻿@model travelwhims.Models.TWdatabase.TravelAgency
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_AgencyLayout.cshtml";
+}
+
+<center>
+
+    <h2 style="font-family:'Times New Roman'; border:2px solid mediumseagreen; width:300px; padding:5px; margin:20px;">My Profile</h2>
+
+    <form class="form-floating" action="/Travelagency/EditProfile" style="width:500px;" method="post" enctype="multipart/form-data">
+
+        <input class="form-control" type="hidden" name="id" value="@Model.id">
+        <input class="form-control" type="hidden" name="ta_rating" value="@Model.ta_rating">
+        <input class="form-control" type="hidden" name="id" value="@Model.id">
+
+
+        <div class="form-floating">
+
+            <input class="form-control" type="text" name="ta_username" border="0" value="@Model.ta_username" readonly>
+            <label style="margin-left:20px;" for="ta_username">Username</label><br />
+
+        </div>
+
+        <div class="form-floating">
+
+            <input class="form-control" id="ta_name" type="text" name="ta_name" placeholder="Name" value="@Model.ta_name">
+            <label style="margin-left:20px;" for="ta_name">Name</label><br />
+
+        </div>
+
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Bio" name="ta_bio" id="ta_bio" style="height: 100px">@Model.ta_bio</textarea>
+            <label style="margin-left:20px;" for="ta_bio">Bio</label><br />
+        </div>
+
+        <div class="form-floating">
+            <input class="form-control" id="ta_mail" type="email" name="ta_mail" placeholder="Email" value="@Model.ta_mail">
+            <label style="margin-left:20px;" for="ta_mail">E-mail</label><br />
+
+        </div>
+        <div class="form-floating">
+            <input class="form-control" id="ta_phone" type="tel" name="ta_phone" placeholder="Phone" value="@Model.ta_phone">
+            <label style="margin-left:20px;" for="ta_phone">Phone</label><br />
+
+        </div>
+
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Address" name="ta_officeaddress" id="ta_officeaddress" style="height: 100px">@Model.ta_officeaddress</textarea>
+            <label style="margin-left:20px;" for="ta_officeaddress">Office Address</label><br />
+        </div>
+
+        <div>
+
+            <fieldset class="input-group">
+
+                <label class="input-group-text" for="tadisplaypicture">Profile Picture: </label>
+                <input class="form-control" value="@Model.ta_dp" type="file" name="tadisplaypicture" id="tadisplaypicture" />
+                @Html.ValidationMessageFor(model => model.ta_dp, "", new { @class = "text-danger" })
+                <br />
+            </fieldset>
+
+
+        </div>
+        <br />
+
+        <input class="btn btn-success" type="submit" value="Edit">
+
+    </form>
+
+</center>

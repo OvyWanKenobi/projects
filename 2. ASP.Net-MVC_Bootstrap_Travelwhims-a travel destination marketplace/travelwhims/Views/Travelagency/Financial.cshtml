@@ -1,0 +1,64 @@
+﻿
+@model List<travelwhims.Models.TWdatabase.Package>
+
+@{
+    ViewBag.Title = "Fiancial";
+    Layout = "~/Views/Shared/_AgencyLayout.cshtml";
+}
+
+<center>
+
+
+    <h2 style="color:forestgreen;">Financial</h2>
+
+
+    @{
+        var totearn = 0;
+        var i = 1;
+    }
+
+    @foreach (var pac in Model)
+    {
+        totearn = totearn + ((pac.pac_price) * (pac.CustomerPackages.Count()));
+
+    }
+
+    <h4>Current Earning : @totearn BDT</h4>
+    <br />
+</center>
+<table class="table table-striped">
+    <tr>
+        <th> </th>
+        <th>Package Title</th>
+        <th>Destinations</th>
+        <th>Tour Date</th>
+        <th>Price</th>
+        <th>Total Enrollment</th>
+        <th>Earning</th>
+    </tr>
+    @foreach (var pack in Model)
+    {
+        if (pack.CustomerPackages.Count() != 0)
+        {
+
+<tr>
+    <td>@i</td>
+    @{ i++; }
+    <td>@pack.pac_title</td>
+    <td>@pack.pac_destinations</td>
+    <td>@pack.pac_tourdate.ToLongDateString()</td>
+    <td>@pack.pac_price</td>
+    <td>@pack.CustomerPackages.Count()</td>
+    @{
+        var earn = @pack.pac_price * @pack.CustomerPackages.Count();
+    }
+    <td>@earn</td>
+</tr>
+        }
+    }
+
+
+</table>
+
+
+

@@ -1,0 +1,124 @@
+﻿@model travelwhims.Models.TWdatabase.Package
+
+@{
+    ViewBag.Title = "Package";
+    Layout = "~/Views/Shared/_AgencyLayout.cshtml";
+}
+
+
+
+
+
+<div>
+    <center>
+        <img src="~/images/packages/@Model.pac_thumbnail" alt="pac_thumbnail" style="object-fit:cover; padding:10px;" width="1200" height="350" >
+    </center>
+
+    <div class="row">
+
+
+        <div class="col-3" style="margin-left:100px; margin-top:25px; width:800px;">
+            <h1 style="color: Highlight"><b> @Model.pac_title</b></h1>
+            <h4>Destination:  @Model.pac_destinations</h4>
+            <h4>From  @Model.pac_tourdate.ToLongDateString() to   @Model.pac_returndate.ToLongDateString() </h4>
+            <table>
+                <tr>
+
+                    <th><h4>Category :</h4></th>
+                    <th><h4>@Model.pac_category</h4></th>
+
+                </tr>
+                
+                <tr>
+
+                    <th><h4>Class :</h4></th>
+                    <th><h4>@Model.pac_class</h4></th>
+
+                </tr>
+                <tr>
+
+                    <th>
+                        <h4>
+                            Price :
+                        </h4>
+                    </th>
+                    <th><h4>@Model.pac_price</h4></th>
+
+                </tr>
+                <tr>
+
+                    <th><h5>Detail :</h5></th>
+                    <th><h5>@Model.pac_bio</h5></th>
+
+                </tr>
+
+                @if ((Model.pac_prerequisite) != null)
+                {
+
+                    <tr>
+                        <th><h5>Pre-requisite :</h5></th>
+                        <th> <h5>@Model.pac_prerequisite</h5></th>
+
+                    </tr>
+
+                }
+
+            </table>
+
+
+
+        </div>
+        <div class="col-3" style="margin-left:100px; padding-top:50px; width:200px;">
+            <center>
+                @if (Model.pac_status == "Inactive")
+                {<a class="btn btn-warning" style="width:180px; margin-top:10px; pointer-events:none; cursor:default; margin-bottom:10px;" href=""> <h5>Status : @Model.pac_status</h5> </a>
+            }
+            else if (Model.pac_status == "Declined")
+            {
+                <a class="btn btn-danger" style="width:180px; margin-top:10px; pointer-events:none; cursor:default; margin-bottom:10px;" href=""> <h5>Status : @Model.pac_status</h5> </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" style="width:180px; margin-top:10px; pointer-events:none; cursor:default; margin-bottom:10px;" href=""> <h5>Status : @Model.pac_status</h5> </a>
+            }
+                <br /><br />
+
+                @if (Model.CustomerPackages.Count() == 0)
+                {
+                    <a  class="btn btn-outline-success" style="border-width:1.5px; width:175px; cursor:default;" href="#">
+                        <h3>@Model.CustomerPackages.Count()</h3> <h5>Member Enrolled</h5>
+                    </a><br />
+                }
+                else
+                {
+                    <a class="btn btn-outline-success" style="border-width:1.5px; width:175px;" href="/Travelagency/Participants/@Model.id">
+                        <h3>@Model.CustomerPackages.Count()</h3> <h5>Member Enrolled</h5>
+                    </a><br />
+                }
+
+
+                <br />
+                <a class="btn btn-success" style=" width:175px;" href="/Travelagency/EditPackage/@Model.id">
+                    <h5>Edit Details</h5>
+                </a>
+                @if (Model.CustomerPackages.Count() == 0)
+                {
+                    <br /> <br />
+                    <a class="btn btn-danger" style=" width:175px;" href="">
+                        <h5>Delete</h5>
+                    </a>
+                }
+
+            </center>
+        </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+

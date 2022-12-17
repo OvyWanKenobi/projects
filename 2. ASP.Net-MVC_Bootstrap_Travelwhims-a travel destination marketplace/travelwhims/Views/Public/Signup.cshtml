@@ -1,0 +1,78 @@
+﻿@model travelwhims.Models.Entities.CustomerModel
+
+
+@{
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+
+<center>
+   
+    <div>
+
+        <h2 style="color:forestgreen; margin-bottom: 40px;">SignUp</h2>
+
+
+        @if (TempData["msg"] != null)
+        {
+            <b> <span style="color:red; border:1px dashed red; padding:5px;">Error: @TempData["msg"]</span></b>
+            <br />
+        }
+
+        <form class="form-floating" action="/Public/SignUp" style="width:500px;" method="post" enctype="multipart/form-data">
+            <div class="form-floating">
+
+                <input class="form-control" id="c_name" type="text" name="c_name" placeholder="Name">
+                <label style="margin-left:20px;" for="c_name">Name</label><br />
+                @Html.ValidationMessageFor(model => model.c_name, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-floating">
+                <input class="form-control" id="c_username" type="text" name="c_username" placeholder="Username">
+                <label style="margin-left:20px;" for="c_username">Username</label><br />
+                @Html.ValidationMessageFor(model => model.c_username, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-floating">
+                <input class="form-control" id="u_password" type="password" name="u_password" placeholder="Password">
+                <label style="margin-left:20px;" for="u_password">Password</label><br />
+
+            </div>
+            <div class="form-floating">
+                <input class="form-control" id="c_phone" type="tel" name="c_phone" placeholder="Phone Number">
+                <label style="margin-left:20px;" for="c_phone">Phone Number</label><br />
+                @Html.ValidationMessageFor(model => model.c_phone, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-floating">
+                <input class="form-control" id="c_mail" type="email" name="c_mail" placeholder="E-Mail">
+                <label style="margin-left:20px;" for="c_mail">E-Mail</label><br />
+                @Html.ValidationMessageFor(model => model.c_mail, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Address" name="c_address" id="c_address" style="height: 100px"></textarea>
+                <label style="margin-left:20px;" for="c_address">Address</label><br />
+                @Html.ValidationMessageFor(model => model.c_address, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <fieldset class="input-group">
+
+                    <label class="input-group-text" for="profilepicture">Profile Picture :</label>
+                    <input class="form-control" style="cursor:pointer; " type="file" name="profilepicture" id="profilepicture" />
+                    <br />
+                </fieldset>
+
+
+            </div>
+            <br />
+            <input class="btn btn-success" type="submit" value="Sign Up">
+        </form>
+
+        <br />
+        <h5>Already have an account? <a class="btn btn-outline-success" href="/Public/Login">Login</a> </h5>
+    </div>
+   
+</center>
+

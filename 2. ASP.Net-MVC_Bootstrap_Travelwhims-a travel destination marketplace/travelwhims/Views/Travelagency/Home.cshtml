@@ -1,0 +1,62 @@
+﻿@model List<travelwhims.Models.TWdatabase.Package>
+
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_AgencyLayout.cshtml";
+}
+
+
+
+
+<h3 style="font-style:italic; margin-left: 50px; margin-top:20px;">Welcome, @Session["agencyname"]</h3>
+
+
+<center>
+
+
+    <div>
+        <h3 style="font-family:'Times New Roman'; border:2px solid mediumseagreen; width:300px; padding:5px;"> Ongoing Packages</h3>
+        <br />
+
+        @foreach (var pac in Model)
+        {
+            if (pac.pac_status != "Inactive")
+            {
+
+
+                <table class="table table-hover" style=" width:1200px; ">
+
+                    <tr class="clickable " style="cursor:pointer; " onclick="window.location = '/Travelagency/Package/@pac.id'">
+                        <td width="275" style="padding:10px">
+
+                            <img src="~/images/packages/@pac.pac_thumbnail" alt="pac_thumbnail" style="object-fit:cover; " width="250" height="150">
+
+
+                        </td>
+                        <td style="padding-left:20px; ">
+                            <h4 style="color:Highlight"><b>@pac.pac_title</b></h4>
+                            <h5>Destination: @pac.pac_destinations</h5>
+
+                            <b>Price : @pac.pac_price</b>
+                            <b>Class : @pac.pac_class</b><br>
+                            <b>@pac.pac_tourdate.ToLongDateString()</b> to <b> @pac.pac_returndate.ToLongDateString() </b><br>
+                            <p style="font-style: italic;">Click to see more details...</p>
+
+                        </td>
+                        <td width="200">
+                            <br />
+                            <a class="btn btn-outline-success" style="border-width:1px;" href="/Travelagency/Participants/@pac.id">
+                                <h3>@pac.CustomerPackages.Count()</h3> <h5>Member Enrolled</h5>
+                            </a>
+                        </td>
+                    </tr>
+
+                </table>
+            }
+
+        }
+    </div>
+
+
+</center>
